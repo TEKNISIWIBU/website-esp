@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello, world!</title>
+</head>
+<style>
+    html {
+        font-family: Arial;
+        display: inline-block;
+        margin: 0px auto;
+        text-align: center;
+    }
+
+    h1 {
+        color: #0F3376;
+        padding: 2vh;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    .button {
+        display: inline-block;
+        background-color: #008CBA;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        padding: 16px 40px;
+        text-decoration: none;
+        font-size: 30px;
+        margin: 2px;
+        cursor: pointer;
+    }
+
+    .button2 {
+        background-color: #f44336;
+    }
+</style>
+
+<body>
+    <h1>Kontrol Ruangan</h1>
+    <!--lampu 1-->
+    <p>status lampu 1:<strong class="status1"></strong></p>
+    <p>
+        <a onclick="on1()"><button class="button">ON</button></a>
+        <a onclick="off1()"><button class="button button2">OFF</button></a>
+    </p>
+    <!--lampu 2-->
+    <p>status lampu 2:<strong class="status2"></strong></p>
+    <p>
+        <a onclick="on2()"><button class="button">ON</button></a>
+        <a onclick="off2()"><button class="button button2">OFF</button></a>
+    </p>
+    <!--lampu 3-->
+    <p>status lampu 3:<strong class="status3"></strong></p>
+    <p>
+        <a onclick="on3()"><button class="button">ON</button></a>
+        <a onclick="off3()"><button class="button button2">OFF</button></a>
+    </p>
+    <!--relay-->
+    <p>status relay:<strong class="relay"></strong></p>
+    <p>
+        <a onclick="onrelay()"><button class="button">ON</button></a>
+        <a onclick="offrelay()"><button class="button button2">OFF</button></a>
+    </p>
+    <!---control botton untuk mengirim data on&off---->
+    <script>
+        const status1 = document.querySelector('.status1');
+        const status2 = document.querySelector('.status2');
+        const status3 = document.querySelector('.status3');
+        const relay = document.querySelector('.relay');
+        function on1() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/R1ON", true);
+            xhttp.send();
+            status1.innerHTML = 'ON'
+            status1.style.color = "green"
+        }
+        function off1() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/R1OFF", true);
+            xhttp.send();
+            status1.innerHTML = 'OFF'
+            status1.style.color = "crimson"
+        }
+        function on2() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/R2ON", true);
+            xhttp.send();
+            status2.innerHTML = 'ON'
+            status2.style.color = "green"
+        }
+        function off2() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/R2OFF", true);
+            xhttp.send();
+            status2.innerHTML = 'OFF'
+            status2.style.color = "crimson"
+        }
+        function on3() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/R3ON", true);
+            xhttp.send();
+            status3.innerHTML = 'ON'
+            status3.style.color = "green"
+        }
+        function off3() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/R3OFF", true);
+            xhttp.send();
+            status3.innerHTML = 'OFF'
+            status3.style.color = "crimson"
+        }
+        function onrelay() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/RELAYON", true);
+            xhttp.send();
+            relay.innerHTML = 'ON'
+            relay.style.color = "green"
+        }
+        function offrelay() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/RELAYOFF", true);
+            xhttp.send();
+            relay.innerHTML = 'OFF'
+            relay.style.color = "crimson"
+        }
+    </script>
+</body>
+
+</html>
