@@ -68,6 +68,8 @@
         <a onclick="onrelay()"><button class="button">ON</button></a>
         <a onclick="offrelay()"><button class="button button2">OFF</button></a>
     </p>
+
+    <h1 id="sensor"></h1>
     <!---control botton untuk mengirim data on&off---->
     <script>
         const status1 = document.querySelector('.status1');
@@ -129,6 +131,19 @@
             xhttp.send();
             relay.innerHTML = 'OFF'
             relay.style.color = "crimson"
+        }
+        setInterval(function () {
+            sensor();
+        }, 1000);
+        function sensor() {
+            var xhattp = new XMLHttpRequest();
+            xhattp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    Document.getElementByid("sensor").innerHTML = this.responseText
+                }
+            };
+            xhttp.open("GET", "/sensor", true);
+            xhttp.send();
         }
     </script>
 </body>
